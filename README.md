@@ -2,7 +2,7 @@
 
 <div align="center">
   <p><strong>AI-Powered Space Exploration & Astronomy Experiences</strong></p>
-  <img src="public/images/og-image.jpg" alt="Cosmora Preview" width="800" />
+  <img src="public/images/og-image.png" alt="Cosmora Preview" width="800" />
 </div>
 
 <br />
