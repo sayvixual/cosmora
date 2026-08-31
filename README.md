@@ -1,40 +1,69 @@
-# COSMORA
+# 🌌 COSMORA
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+> **AI-Powered Space Exploration & Astronomy Experiences**
 
-> **Note to AI Agents and Developers:** Please read [CLAUDE.md](./CLAUDE.md) for critical architecture rules, tech stack constraints, and guidelines before making any changes.
+COSMORA is an interactive web-based 3D space exploration platform that brings the universe to your browser. By combining real astronomical data, immersive 3D graphics, and contextual AI, COSMORA allows users to seamlessly explore the Solar System, dive into Deep Space, and learn about celestial events and historic space missions.
 
-## Getting Started
+![Cosmora Preview](public/images/og-image.jpg) *(Replace with actual screenshot if available)*
 
-First, run the development server:
+---
 
+## ✨ Features
+
+- **Interactive 3D Solar System**: Navigate and explore planets, moons, and the Sun with real-time 3D assets.
+- **Deep Space Views**: Journey beyond our solar system to explore the Andromeda Galaxy, Orion Nebula, and more.
+- **Contextual AI Assistant**: Powered by Groq LLM, the AI acts as your personal astronomer. It knows what you're looking at and answers your questions with scientific accuracy.
+- **Mission Logs & Telemetry**: Track historical space missions (Apollo, Voyager, Perseverance) and view real-time-like telemetry.
+- **Personal Observation Logbook**: Log your own real-world stargazing observations to your personal account.
+- **NASA Data Integration**: Real-time Astronomy Picture of the Day (APOD) and dynamic celestial event tracking.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS + `framer-motion` for fluid animations
+- **3D Graphics**: `three.js` + `@react-three/fiber` + `@react-three/drei`
+- **Database & Auth**: [Supabase](https://supabase.com/) (PostgreSQL + Row Level Security)
+- **AI Integration**: [Groq API](https://console.groq.com) (Llama 3 / Mixtral models for ultra-fast inference)
+
+## 🚀 Getting Started
+
+Follow these steps to run Cosmora locally:
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/sayvixual/cosmora.git
+cd cosmora
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Configure Environment Variables
+Copy the example environment file and fill in your keys:
+```bash
+cp .env.example .env.local
+```
+You will need:
+- Supabase URL & Anon Key (from your Supabase project)
+- Groq API Key
+- NASA API Key (optional)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run the development server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) with your browser to start exploring.
 
-## Learn More
+## 🗄️ Database Setup (Supabase)
 
-To learn more about Next.js, take a look at the following resources:
+To set up the required database tables, you can run the SQL files located in `supabase/migrations/` directly in your Supabase SQL Editor:
+1. `001_initial_schema.sql` (Creates tables)
+2. `002_seed_data.sql` (Populates base astronomical data)
+3. `003_secure_rls.sql` (Enforces Row-Level Security for user logs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> **Note to AI Agents and Developers:** Please read [CLAUDE.md](./CLAUDE.md) for critical architecture rules, tech stack constraints, and guidelines before making any changes to the codebase.
