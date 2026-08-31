@@ -76,8 +76,6 @@ export async function POST(req: NextRequest) {
             const c = chunk as any;
             if (c.type === 'text-delta') {
               controller.enqueue(encodeText(c.text ?? ''));
-            } else if (c.type === 'tool-call') {
-              controller.enqueue(encodeText(`\n\n*(Memproses data menggunakan alat: ${c.toolName}...)*\n\n`));
             } else if (c.type === 'error') {
               controller.enqueue(encodeText(getErrorMsg(c.error)));
             }
