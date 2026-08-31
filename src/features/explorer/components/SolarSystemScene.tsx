@@ -232,10 +232,10 @@ export function SolarSystemScene({
 
   return (
     <div className="relative w-full h-full bg-transparent overflow-hidden select-none">
-      <Canvas
+      <Canvas dpr={[1, 1.5]}
         camera={{ position: [0, 5.6, 9.8], fov: 45, near: 0.1, far: 1000 }}
         gl={{ 
-          antialias: true, 
+          antialias: false, 
           alpha: true, 
           powerPreference: typeof window !== "undefined" && window.innerWidth < 768 ? "low-power" : "high-performance" 
         }}

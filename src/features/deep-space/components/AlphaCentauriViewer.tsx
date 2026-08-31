@@ -814,10 +814,10 @@ export function AlphaCentauriViewer({
     <div className="relative w-full h-full min-h-0 bg-gradient-to-b from-[#050302] via-[#080502] to-[#020201] overflow-hidden select-none cursor-grab active:cursor-grabbing">
       
       {/* 3D Three.js Interactive Viewport */}
-      <Canvas
+      <Canvas dpr={[1, 1.5]}
         camera={{ position: [0, 2.2, 7.8], fov: 45 }}
         gl={{
-          antialias: true,
+          antialias: false,
           alpha: true,
           powerPreference: typeof window !== "undefined" && window.innerWidth < 768 ? "low-power" : "high-performance",
         }}

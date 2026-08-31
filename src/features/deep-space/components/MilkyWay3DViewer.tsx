@@ -181,10 +181,10 @@ export function MilkyWay3DViewer({
   return (
     <div className="relative w-full h-full min-h-0 bg-gradient-to-b from-[#02050B] via-[#050C16] to-[#010307] overflow-hidden select-none cursor-grab active:cursor-grabbing">
       {/* 3D Canvas */}
-      <Canvas
+      <Canvas dpr={[1, 1.5]}
         camera={{ position: [0, 3.2, 7.2], fov: 45 }}
         gl={{ 
-          antialias: true, 
+          antialias: false, 
           alpha: true, 
           powerPreference: typeof window !== "undefined" && window.innerWidth < 768 ? "low-power" : "high-performance" 
         }}

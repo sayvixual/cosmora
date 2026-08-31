@@ -183,10 +183,10 @@ export function Andromeda3DViewer({
   return (
     <div className="relative w-full h-full min-h-0 bg-gradient-to-b from-[#030408] via-[#080711] to-[#020205] overflow-hidden select-none cursor-grab active:cursor-grabbing">
       {/* 3D Canvas */}
-      <Canvas
+      <Canvas dpr={[1, 1.5]}
         camera={{ position: [0, 2.5, 6.5], fov: 45 }}
         gl={{ 
-          antialias: true, 
+          antialias: false, 
           alpha: true, 
           powerPreference: typeof window !== "undefined" && window.innerWidth < 768 ? "low-power" : "high-performance" 
         }}

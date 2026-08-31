@@ -776,10 +776,10 @@ export function PleiadesClusterViewer({
     <div className="relative w-full h-full min-h-0 bg-gradient-to-b from-[#020409] via-[#040813] to-[#010206] overflow-hidden select-none cursor-grab active:cursor-grabbing">
       
       {/* 3D Three.js Interactive Viewport */}
-      <Canvas
+      <Canvas dpr={[1, 1.5]}
         camera={{ position: [0, 0.25, 8.5], fov: 42 }}
         gl={{
-          antialias: true,
+          antialias: false,
           alpha: true,
           powerPreference: typeof window !== "undefined" && window.innerWidth < 768 ? "low-power" : "high-performance",
         }}

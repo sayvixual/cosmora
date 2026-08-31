@@ -218,9 +218,9 @@ export function DeepPlanetInspectorModal({
           
           {/* Main 3D Canvas (Clean, Interactive, Zero Watermarks) */}
           <div className="lg:col-span-7 xl:col-span-8 relative w-full h-[32vh] sm:h-[38vh] md:h-[42vh] lg:h-full min-h-[220px] sm:min-h-[280px] bg-gradient-to-b from-[#03060c] via-[#050914] to-[#020307] shrink-0">
-            <Canvas
+            <Canvas dpr={[1, 1.5]}
               camera={{ position: [0, 0.6, 5.2], fov: 45 }}
-              gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+              gl={{ antialias: false, alpha: true, powerPreference: "high-performance" }}
             >
               {/* Cinematic Space Lighting without internal blowout pointLight */}
               <ambientLight intensity={0.45} color="#D8E2EC" />

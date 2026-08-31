@@ -156,10 +156,10 @@ export function SpacecraftViewer({
       onPointerUp={() => setIsInteracting(false)}
     >
       {/* 3D WebGL Canvas with High Exposure ACES Filmic Tone Mapping */}
-      <Canvas
+      <Canvas dpr={[1, 1.5]}
         camera={{ position: [0, 0.8, 4.6], fov: 42 }}
         gl={{ 
-          antialias: true, 
+          antialias: false, 
           alpha: true,
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 2.2

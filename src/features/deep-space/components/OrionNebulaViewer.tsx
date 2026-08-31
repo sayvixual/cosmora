@@ -857,10 +857,10 @@ export function OrionNebulaViewer({
     <div className="relative w-full h-full min-h-0 bg-gradient-to-b from-[#020104] via-[#040208] to-[#010002] overflow-hidden select-none cursor-grab active:cursor-grabbing">
       
       {/* 3D Interactive Three.js Viewport */}
-      <Canvas
+      <Canvas dpr={[1, 1.5]}
         camera={{ position: [0, 0.3, 7.5], fov: 45 }}
         gl={{
-          antialias: true,
+          antialias: false,
           alpha: true,
           powerPreference: typeof window !== "undefined" && window.innerWidth < 768 ? "low-power" : "high-performance",
         }}

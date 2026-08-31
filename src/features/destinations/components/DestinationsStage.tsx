@@ -80,7 +80,7 @@ export function DestinationsStage({ onSelectStage, onOpenAI }: DestinationsStage
         >
           {/* Canvas Viewport */}
           <div className="w-full h-full relative cursor-grab active:cursor-grabbing">
-            <Canvas camera={{ position: [0, 0, 6.2], fov: 45 }} gl={{ alpha: true }}>
+            <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 6.2], fov: 45 }} gl={{ alpha: true }}>
               <Suspense fallback={null}>
                 <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade speed={1} />
                 <EarthGlobe 
