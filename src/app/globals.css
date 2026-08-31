@@ -1,0 +1,410 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* COSMORA Deep Space Color Palette */
+  --color-void: #05070A;
+  --color-deep: #080B10;
+  --color-surface: #0D1117;
+  --color-surface-elevated: #131924;
+  --color-surface-translucent: rgba(13, 17, 23, 0.72);
+  --color-border: #1B2333;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+  
+  --color-text-primary: #EEF0F5;
+  --color-text-secondary: #8A9BB5;
+  --color-text-tertiary: #4E5E77;
+  
+  --color-accent: #4B9EFF;
+  --color-accent-dim: #163660;
+  --color-warm: #E58A3C;
+  --color-warm-dim: #4D2B10;
+  --color-solar: #FFB347;
+
+  /* Motion tokens */
+  --duration-micro: 180ms;
+  --duration-panel: 320ms;
+  --duration-spatial: 600ms;
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --background: #05070A;
+  --foreground: #EEF0F5;
+  --card: #0D1117;
+  --card-foreground: #EEF0F5;
+  --popover: #0D1117;
+  --popover-foreground: #EEF0F5;
+  --primary: #EEF0F5;
+  --primary-foreground: #05070A;
+  --secondary: #131924;
+  --secondary-foreground: #EEF0F5;
+  --muted: #131924;
+  --muted-foreground: #8A9BB5;
+  --accent: #4B9EFF;
+  --accent-foreground: #05070A;
+  --destructive: #E5484D;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #4B9EFF;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--color-void);
+  --color-foreground: var(--color-text-primary);
+  --color-void: var(--color-void);
+  --color-deep: var(--color-deep);
+  --color-surface: var(--color-surface);
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-strong: var(--color-border-strong);
+  
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-tertiary: var(--color-text-tertiary);
+  
+  --color-accent: var(--color-accent);
+  --color-accent-dim: var(--color-accent-dim);
+  --color-warm: var(--color-warm);
+  --color-warm-dim: var(--color-warm-dim);
+  --color-solar: var(--color-solar);
+
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "SF Mono", Monaco, Consolas, monospace;
+}
+
+body {
+  background-color: #05070A;
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Editorial Sci-Fi Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4BA2FF;
+  box-shadow: 0 0 12px rgba(75, 158, 255, 0.8);
+}
+
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Specific Cosmic Scrollbar Utility */
+.cosmic-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(75, 158, 255, 0.3) transparent;
+}
+
+.cosmic-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cosmic-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 9999px;
+  margin: 6px 0;
+}
+
+.cosmic-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+.cosmic-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4BA2FF;
+  box-shadow: 0 0 10px rgba(75, 158, 255, 0.9);
+}
+
+/* Complete Scrollbar Suppression Utility */
+.no-scrollbar,
+.scrollbar-none {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Glassmorphism & Framing Utilities */
+.cosmic-panel {
+  background: rgba(13, 17, 23, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+}
+
+.cosmic-panel-interactive {
+  transition: all var(--duration-micro) var(--ease-cinematic);
+}
+
+.cosmic-panel-interactive:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(19, 25, 36, 0.85);
+  transform: translateY(-1px);
+}
+
+.cosmic-frame {
+  position: relative;
+  border-radius: 1rem;
+  background: #080B10;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02), 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+/* Subtle Technical Reticle & Grid Lines */
+.technical-border {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.reticle-corner::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 6px;
+  height: 6px;
+  border-top: 1px solid var(--color-accent);
+  border-left: 1px solid var(--color-accent);
+}
+
+.reticle-corner::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 6px;
+  height: 6px;
+  border-bottom: 1px solid var(--color-accent);
+  border-right: 1px solid var(--color-accent);
+}
+
+/* ==========================================================================
+   Space Explorer HUD & Lightsaber Plasma Blade Tokens
+   ========================================================================== */
+
+/* Pure Linear Lightsaber Plasma Blade Sweep - Constant Speed */
+@keyframes lightsaber-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  98% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+}
+
+.lightsaber-blade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(240px, 25vw, 360px);
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(75, 158, 255, 0.05) 15%,
+    rgba(75, 158, 255, 0.35) 45%,
+    rgba(0, 240, 255, 0.85) 75%,
+    #FFFFFF 94%,
+    #FFFFFF 99%,
+    transparent 100%
+  );
+  filter: drop-shadow(0 0 2px #FFFFFF) drop-shadow(0 0 6px #00F0FF) drop-shadow(0 0 14px #4B9EFF);
+  animation: lightsaber-sweep 3.6s linear infinite;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Brilliant Leading Energy Photon Tip */
+.lightsaber-blade::after {
+  content: '';
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: #FFFFFF;
+  box-shadow: 
+    0 0 6px 1px #FFFFFF,
+    0 0 14px 2px #00F0FF,
+    0 0 24px 4px rgba(75, 158, 255, 0.8);
+}
+
+/* Dual-Axis Orbital Ring Spin */
+@keyframes orbit-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-spin-reverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-orbit-spin {
+  animation: orbit-spin 14s linear infinite;
+}
+
+.animate-orbit-spin-reverse {
+  animation: orbit-spin-reverse 20s linear infinite;
+}
+
+/* Pulsing Beacon / Radar Wave */
+@keyframes beacon-ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+.animate-beacon-ping {
+  animation: beacon-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Audio Visualizer Equalizer Bars */
+@keyframes audio-bounce-1 {
+  0%, 100% { height: 4px; }
+  50% { height: 14px; }
+}
+
+@keyframes audio-bounce-2 {
+  0%, 100% { height: 12px; }
+  50% { height: 5px; }
+}
+
+@keyframes audio-bounce-3 {
+  0%, 100% { height: 7px; }
+  50% { height: 16px; }
+}
+
+@keyframes audio-bounce-4 {
+  0%, 100% { height: 14px; }
+  50% { height: 6px; }
+}
+
+.animate-audio-1 { animation: audio-bounce-1 0.85s ease-in-out infinite; }
+.animate-audio-2 { animation: audio-bounce-2 0.7s ease-in-out infinite; }
+.animate-audio-3 { animation: audio-bounce-3 1.1s ease-in-out infinite; }
+.animate-audio-4 { animation: audio-bounce-4 0.9s ease-in-out infinite; }
+
+/* Sci-Fi Chamfer Cut Corner Button */
+.btn-chamfer {
+  clip-path: polygon(
+    8px 0%,
+    calc(100% - 8px) 0%,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0% calc(100% - 8px),
+    0% 8px
+  );
+}
+
+/* Space Stardust Ambient Glow */
+.space-glow-cyan {
+  box-shadow: 0 0 25px -4px rgba(75, 158, 255, 0.4), inset 0 0 12px rgba(75, 158, 255, 0.15);
+}
+
+.space-glow-solar {
+  box-shadow: 0 0 25px -4px rgba(255, 179, 71, 0.4), inset 0 0 12px rgba(255, 179, 71, 0.15);
+}
+
+/* Telemetry Spine Laser Scanning Animation */
+@keyframes laserScanning {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 64px);
+    opacity: 0;
+  }
+}
+
+.animate-laser-scan {
+  animation: laserScanning 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
