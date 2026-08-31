@@ -1,0 +1,536 @@
+{
+  "asset": {
+    "generator": "glTF-Transform v4.4.2",
+    "version": "2.0",
+    "extras": {
+      "author": "ArnieRosemary (https://sketchfab.com/tekons13)",
+      "license": "CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)",
+      "source": "https://sketchfab.com/3d-models/voyager-nasa-f39f4ad0bfb94cb89ced40b70c35a412",
+      "title": "Voyager NASA"
+    }
+  },
+  "accessors": [
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 17240,
+      "max": [
+        245.7428741455078,
+        426.86273193359375,
+        284.8753356933594
+      ],
+      "min": [
+        -240.851318359375,
+        -242.3884735107422,
+        -48.07963562011719
+      ],
+      "bufferView": 0,
+      "byteOffset": 0
+    },
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 17240,
+      "bufferView": 0,
+      "byteOffset": 12
+    },
+    {
+      "type": "VEC4",
+      "componentType": 5126,
+      "count": 17240,
+      "bufferView": 0,
+      "byteOffset": 24
+    },
+    {
+      "type": "VEC2",
+      "componentType": 5126,
+      "count": 17240,
+      "bufferView": 0,
+      "byteOffset": 40
+    },
+    {
+      "type": "SCALAR",
+      "componentType": 5125,
+      "count": 80706,
+      "bufferView": 1,
+      "byteOffset": 0
+    },
+    {
+      "type": "SCALAR",
+      "componentType": 5125,
+      "count": 24264,
+      "bufferView": 1,
+      "byteOffset": 322824
+    },
+    {
+      "type": "SCALAR",
+      "componentType": 5125,
+      "count": 115296,
+      "bufferView": 1,
+      "byteOffset": 419880
+    },
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 5962,
+      "max": [
+        -102.30084228515625,
+        182.55828857421875,
+        95.49172973632812
+      ],
+      "min": [
+        -323.57928466796875,
+        -427.1725769042969,
+        -156.90948486328125
+      ],
+      "bufferView": 2,
+      "byteOffset": 0
+    },
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 5962,
+      "bufferView": 2,
+      "byteOffset": 12
+    },
+    {
+      "type": "VEC4",
+      "componentType": 5126,
+      "count": 5962,
+      "bufferView": 2,
+      "byteOffset": 24
+    },
+    {
+      "type": "VEC2",
+      "componentType": 5126,
+      "count": 5962,
+      "bufferView": 2,
+      "byteOffset": 40
+    },
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 24645,
+      "max": [
+        347.097412109375,
+        395.8929443359375,
+        923.4205322265625
+      ],
+      "min": [
+        -325.4781494140625,
+        -1033.1058349609375,
+        -246.29269409179688
+      ],
+      "bufferView": 3,
+      "byteOffset": 0
+    },
+    {
+      "type": "VEC3",
+      "componentType": 5126,
+      "count": 24645,
+      "bufferView": 3,
+      "byteOffset": 12
+    },
+    {
+      "type": "VEC2",
+      "componentType": 5126,
+      "count": 24645,
+      "bufferView": 3,
+      "byteOffset": 24
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 827520,
+      "byteStride": 48,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 827520,
+      "byteLength": 881064,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1708584,
+      "byteLength": 286176,
+      "byteStride": 48,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 1994760,
+      "byteLength": 788640,
+      "byteStride": 32,
+      "target": 34962
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "textures": [
+    {
+      "source": 0,
+      "sampler": 0
+    },
+    {
+      "source": 1,
+      "sampler": 0
+    },
+    {
+      "source": 6,
+      "sampler": 0
+    },
+    {
+      "source": 2,
+      "sampler": 0
+    },
+    {
+      "source": 3,
+      "sampler": 0
+    },
+    {
+      "source": 4,
+      "sampler": 0
+    },
+    {
+      "source": 8,
+      "sampler": 0
+    },
+    {
+      "source": 5,
+      "sampler": 0
+    },
+    {
+      "source": 7,
+      "sampler": 0
+    }
+  ],
+  "images": [
+    {
+      "mimeType": "image/png",
+      "uri": "textures/voyager_group_2_diffuse.png"
+    },
+    {
+      "mimeType": "image/png",
+      "uri": "textures/voyager_group_2_normal.png"
+    },
+    {
+      "mimeType": "image/png",
+      "uri": "textures/voyager_group_1_diffuse.png"
+    },
+    {
+      "mimeType": "image/png",
+      "uri": "textures/voyager_group_1_emissive.png"
+    },
+    {
+      "mimeType": "image/png",
+      "uri": "textures/voyager_group_1_normal.png"
+    },
+    {
+      "mimeType": "image/png",
+      "uri": "specular_1.png"
+    },
+    {
+      "mimeType": "image/png",
+      "uri": "metallicRoughness_1.png"
+    },
+    {
+      "mimeType": "image/png",
+      "uri": "specular_2.png"
+    },
+    {
+      "mimeType": "image/png",
+      "uri": "metallicRoughness_2.png"
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "scene.bin",
+      "byteLength": 2783400
+    }
+  ],
+  "materials": [
+    {
+      "name": "voyager_group_2",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 2
+        }
+      },
+      "normalTexture": {
+        "index": 1
+      },
+      "extensions": {
+        "KHR_materials_ior": {
+          "ior": 1000
+        },
+        "KHR_materials_specular": {
+          "specularTexture": {
+            "index": 7
+          },
+          "specularColorTexture": {
+            "index": 7
+          }
+        }
+      }
+    },
+    {
+      "name": "voyager_group_1",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "metallicFactor": 0,
+        "baseColorTexture": {
+          "index": 3
+        },
+        "metallicRoughnessTexture": {
+          "index": 6
+        }
+      },
+      "emissiveFactor": [
+        1,
+        1,
+        1
+      ],
+      "emissiveTexture": {
+        "index": 4
+      },
+      "normalTexture": {
+        "index": 5
+      },
+      "extensions": {
+        "KHR_materials_ior": {
+          "ior": 1000
+        },
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            0.2407757261,
+            0.2407757261,
+            0.2407757261
+          ],
+          "specularTexture": {
+            "index": 8
+          },
+          "specularColorTexture": {
+            "index": 8
+          }
+        }
+      }
+    },
+    {
+      "name": "Cromado",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "roughnessFactor": 0.11771483989999998,
+        "metallicFactor": 0
+      },
+      "extensions": {
+        "KHR_materials_ior": {
+          "ior": 1000
+        },
+        "KHR_materials_specular": {
+          "specularColorFactor": [
+            0.0879887461471648,
+            0.0879887461471648,
+            0.0879887461471648
+          ]
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "voyager_group2_voyager_group_2_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "mode": 4,
+          "material": 0,
+          "indices": 4
+        }
+      ]
+    },
+    {
+      "name": "voyager_group1_voyager_group_1_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 8,
+            "POSITION": 7,
+            "TANGENT": 9,
+            "TEXCOORD_0": 10
+          },
+          "mode": 4,
+          "material": 1,
+          "indices": 5
+        }
+      ]
+    },
+    {
+      "name": "voyager_Soportes_Cromado_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 12,
+            "POSITION": 11,
+            "TEXCOORD_0": 13
+          },
+          "mode": 4,
+          "material": 2,
+          "indices": 6
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Sketchfab_model",
+      "rotation": [
+        -0.7071067811865475,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "children": [
+        1
+      ]
+    },
+    {
+      "name": "07d7231f829e4983970fa2b4ba696c31.fbx",
+      "rotation": [
+        0.7071067811865475,
+        0,
+        0,
+        0.7071067811865476
+      ],
+      "children": [
+        2
+      ]
+    },
+    {
+      "name": "RootNode",
+      "children": [
+        3
+      ]
+    },
+    {
+      "name": "voyager",
+      "translation": [
+        163.2311553955078,
+        134.05288696289062,
+        28948.716796875
+      ],
+      "rotation": [
+        -0.382308990032052,
+        0.37194176441694704,
+        0.7778879040630126,
+        0.3322492569375198
+      ],
+      "children": [
+        4,
+        6,
+        8
+      ]
+    },
+    {
+      "name": "voyager_group2",
+      "translation": [
+        221.896484375,
+        249.9970703125,
+        -224.921875
+      ],
+      "rotation": [
+        0.11302850224095824,
+        0.1408594649585837,
+        -0.5314799446250383,
+        0.8275942467623331
+      ],
+      "children": [
+        5
+      ]
+    },
+    {
+      "name": "voyager_group2_voyager_group_2_0",
+      "mesh": 0
+    },
+    {
+      "name": "voyager_group1",
+      "translation": [
+        259.552734375,
+        48.50390625,
+        -299.0166015625
+      ],
+      "rotation": [
+        0.11302850224095824,
+        0.1408594649585837,
+        -0.5314799446250383,
+        0.8275942467623331
+      ],
+      "children": [
+        7
+      ]
+    },
+    {
+      "name": "voyager_group1_voyager_group_1_0",
+      "mesh": 1
+    },
+    {
+      "name": "voyager_Soportes",
+      "translation": [
+        221.896484375,
+        249.9970703125,
+        -224.921875
+      ],
+      "rotation": [
+        0.11302850224095824,
+        0.1408594649585837,
+        -0.5314799446250383,
+        0.8275942467623331
+      ],
+      "children": [
+        9
+      ]
+    },
+    {
+      "name": "voyager_Soportes_Cromado_0",
+      "mesh": 2
+    }
+  ],
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "scene": 0,
+  "extensionsUsed": [
+    "KHR_materials_ior",
+    "KHR_materials_specular"
+  ]
+}

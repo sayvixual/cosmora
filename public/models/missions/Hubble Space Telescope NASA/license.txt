@@ -1,0 +1,11 @@
+Model Information:
+* title:	Hubble Space Telescope
+* source:	https://sketchfab.com/3d-models/hubble-space-telescope-640764e1a20a4c7ea9718a83a05bcb7f
+* author:	NASA (https://sketchfab.com/NASA)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Hubble Space Telescope" (https://sketchfab.com/3d-models/hubble-space-telescope-640764e1a20a4c7ea9718a83a05bcb7f) by NASA (https://sketchfab.com/NASA) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
