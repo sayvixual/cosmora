@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
           system: systemPrompt,
           messages,
           tools: cosmoraTools,
-          stopWhen: isStepCount(5),
+          stopWhen: isStepCount(8),
         });
 
         for await (const chunk of result.fullStream) {

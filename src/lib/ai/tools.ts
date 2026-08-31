@@ -169,11 +169,40 @@ const getEpicEarthImageryTool = tool({
   },
 });
 
+const geocodeLocationTool = tool({
+  description: 'Convert a city or location name into geographic coordinates (latitude, longitude). ALWAYS use this first when the user mentions a specific city or location name before calling getWeatherForecast.',
+  inputSchema: z.object({
+    location: z.string().describe('City or location name e.g. "Jakarta", "London", "New York"'),
+  }),
+  execute: async (args) => {
+    try {
+      const res = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(args.location)}&count=1&language=en&format=json`
+      );
+      const data = await res.json();
+      if (!data.results || data.results.length === 0) {
+        return { error: `Could not find coordinates for "${args.location}". Try a more specific city name.` };
+      }
+      const result = data.results[0];
+      return {
+        name: result.name as string,
+        country: result.country as string,
+        latitude: result.latitude as number,
+        longitude: result.longitude as number,
+        timezone: result.timezone as string,
+      };
+    } catch {
+      return { error: 'Failed to geocode location.' };
+    }
+  },
+});
+
 const getWeatherForecastTool = tool({
-  description: 'Get current weather and cloud cover for a location to assess observation conditions.',
+  description: 'Get current weather and cloud cover for a location to assess stargazing/observation conditions. Requires latitude and longitude — use geocodeLocation tool first if user provides a city name.',
   inputSchema: z.object({
     latitude: z.number().describe('Latitude of the observation site'),
     longitude: z.number().describe('Longitude of the observation site'),
+    location_name: z.string().optional().describe('Human-readable location name for context'),
   }),
   execute: async (args) => {
     try {
@@ -183,11 +212,13 @@ const getWeatherForecastTool = tool({
       const data = await res.json();
       const cloud = data.current.cloud_cover as number;
       return {
+        location: args.location_name ?? `${args.latitude}, ${args.longitude}`,
         temperature_celsius: data.current.temperature_2m as number,
         cloud_cover_percent: cloud,
         visibility_meters: data.current.visibility as number,
         is_good_for_observation: cloud < 30,
-        notes: cloud < 30 ? 'Clear skies, good for observation.' : 'Too cloudy for deep-sky observation.',
+        observation_quality: cloud < 10 ? 'Excellent' : cloud < 30 ? 'Good' : cloud < 60 ? 'Fair' : 'Poor',
+        notes: cloud < 30 ? '✅ Clear skies — great for observation tonight!' : `⚠️ ${cloud}% cloud cover — conditions may limit visibility.`,
       };
     } catch {
       return { error: 'Failed to fetch weather data.' };
@@ -301,6 +332,7 @@ export const cosmoraTools = {
   searchNasaImages: searchNasaImagesTool,
   getMarsRoverPhotos: getMarsRoverPhotosTool,
   getEpicEarthImagery: getEpicEarthImageryTool,
+  geocodeLocation: geocodeLocationTool,
   getWeatherForecast: getWeatherForecastTool,
   getObservationConditions: getObservationConditionsTool,
   searchAstrophysicsPapers: searchAstrophysicsPapersTool,
