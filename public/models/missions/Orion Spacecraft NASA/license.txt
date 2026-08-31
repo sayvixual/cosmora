@@ -1,0 +1,11 @@
+Model Information:
+* title:	Orion Extended Spaceship
+* source:	https://sketchfab.com/3d-models/orion-extended-spaceship-a23ad41c1eaa4f71b86a0d8e575e06c7
+* author:	Srilal (https://sketchfab.com/Srilal)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Orion Extended Spaceship" (https://sketchfab.com/3d-models/orion-extended-spaceship-a23ad41c1eaa4f71b86a0d8e575e06c7) by Srilal (https://sketchfab.com/Srilal) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
