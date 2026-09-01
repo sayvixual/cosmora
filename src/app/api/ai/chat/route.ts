@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
 
 // Health check
 export async function GET() {
-  return new Response(JSON.stringify({ status: 'ok', model: 'openai/gpt-oss-20b' }), {
+  return new Response(JSON.stringify({ status: 'ok', model: 'deepseek-v4-pro', provider: '9inference.cloud' }), {
     headers: { 'Content-Type': 'application/json' },
   });
 }
