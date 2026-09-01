@@ -1,92 +1,198 @@
 # 🌌 COSMORA
 
 <div align="center">
-  <p><strong>AI-Powered Space Exploration & Astronomy Experiences</strong></p>
-  <img src="public/images/og-image.png" alt="Cosmora Preview" width="800" />
+  <img src="public/cosmora_text_logo.jpg" alt="Cosmora Logo" width="320" />
+  <br /><br />
+  <strong>AI-Powered Space Exploration & Astronomy Education Platform</strong>
+  <br />
+  <em>Explore the universe. Ask questions. Get answers — powered by IBM watsonx.</em>
+  <br /><br />
+  <img src="public/images/earth_mauna_kea.jpg" alt="Cosmora — Earth from Mauna Kea" width="800" />
 </div>
 
 <br />
 
-COSMORA is an interactive, web-based 3D space exploration platform that brings the universe directly to your browser. By combining real astronomical data, immersive 3D graphics, and contextual Artificial Intelligence, COSMORA allows users to seamlessly explore the Solar System, dive into Deep Space, and learn about celestial events.
+COSMORA is an interactive, web-based 3D space exploration platform that brings the universe directly to your browser. By combining real astronomical data, immersive 3D graphics, and **IBM watsonx AI (Bob)**, COSMORA allows users to seamlessly explore the Solar System, dive into Deep Space, and learn about celestial events — in a way that feels truly alive.
 
-## 🚨 Problem Statement & Deskripsi Solusi
+---
 
-**Problem Statement:** 
-Platform edukasi astronomi tradisional seringkali bersifat statis, didominasi oleh teks tebal, dan kurang interaktif. Mempelajari alam semesta seharusnya tidak terasa seperti membaca buku teks biasa; ia harus memberikan pengalaman eksplorasi yang nyata dan menggugah rasa ingin tahu.
+## 🚨 Problem Statement & Solution
 
-**Deskripsi Solusi:** 
-COSMORA hadir untuk mengubah cara kita belajar astronomi menjadi sebuah "living experience". Pengguna dapat "terbang" mengarungi planet-planet dalam lingkungan 3D, bertanya langsung kepada AI mengenai objek langit yang sedang mereka amati, dan memantau data satelit NASA secara *real-time*. Kami membuat edukasi astronomi menjadi sangat mudah diakses, interaktif, dan menyenangkan.
+**Problem Statement:**
+Traditional astronomy education platforms are often static, text-heavy, and lack meaningful interactivity. Learning about the universe should not feel like reading a textbook — it should feel like a genuine exploration that sparks curiosity and wonder.
 
-## 🧠 AI Approach, Arsitektur & Tema yang Dipilih
+**Our Solution:**
+COSMORA transforms astronomy education into a **living experience**. Users can "fly" through planets in a real-time 3D environment, ask an AI companion about any celestial object they are currently viewing, and track live NASA satellite data — making space education highly accessible, deeply interactive, and genuinely exciting for all ages.
 
-**Tema yang Dipilih:** 
-*Interactive Education & Space Exploration* (Edukasi Interaktif & Eksplorasi Luar Angkasa).
+---
 
-**Arsitektur Sistem:**
-- **Frontend Layer:** Dibangun dengan Next.js 15 (App Router), Tailwind CSS, dan Framer Motion untuk UI yang responsif dan fluid.
-- **3D Rendering Engine:** Menggunakan Three.js dan React Three Fiber untuk me-render objek tata surya (WebGL) secara *real-time* dan interaktif di browser.
-- **Backend & Data Layer:** Memanfaatkan Supabase (PostgreSQL + RLS) untuk keamanan data *Observation Logbook* pengguna, serta integrasi API publik NASA untuk pembaruan data astronomi.
-- **AI Layer:** Pendekatan *Context-Aware AI*. Sistem AI secara terus-menerus menerima *state* dari *viewport* 3D pengguna (misal: "User sedang fokus pada orbit Saturnus") sehingga AI dapat menghasilkan respons yang sangat relevan sesuai dengan apa yang dilihat pengguna.
+## 🧠 AI Approach, Architecture & Theme
 
-**AI Approach:**
-Kami mengkombinasikan *Context-Aware Prompt Engineering* dengan pemrosesan bahasa alami (NLP). AI tidak hanya menjawab secara pasif, tetapi bertindak sebagai pendamping (astronom pribadi) yang "melihat" simulasi yang sama dengan pengguna, memastikan jawaban selalu akurat secara ilmiah dan sesuai konteks visual.
+**Selected Theme:**
+*Interactive Education & Space Exploration*
 
-## 🤖 Bagaimana IBM Bob Digunakan dalam Project
+**System Architecture:**
 
-Dalam arsitektur Cosmora, **IBM Bob** memegang peranan krusial sebagai otak dari **Contextual AI Assistant** kami. 
+| Layer | Technology |
+|---|---|
+| **Frontend** | Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion |
+| **3D Engine** | Three.js, React Three Fiber, React Three Drei |
+| **Backend & Auth** | Supabase (PostgreSQL + Row Level Security) |
+| **AI Intelligence** | **IBM watsonx (Bob)** — Context-Aware NLP & Conversational Guide |
+| **Data Sources** | NASA Public APIs (APOD, telemetry, celestial events) |
 
-1. **Contextual Interactions:** Ketika pengguna melakukan navigasi ke planet atau galaksi tertentu, data koordinat dan informasi objek tersebut dikirim ke IBM Bob. IBM Bob memproses konteks ini untuk memberikan *insights* yang akurat secara ilmiah.
-2. **Conversational Guide:** IBM Bob bertindak sebagai "Personal Astronomer" yang interaktif. Alih-alih mencari di ensiklopedia, pengguna dapat bertanya langsung di dalam ruang 3D (misal: *"Bob, kenapa planet ini berwarna merah?"*), dan IBM Bob akan merespons layaknya seorang ahli.
-3. **Data Interpretation:** Data astronomi mentah (telemetri) dari NASA seringkali kompleks. IBM Bob digunakan untuk menyederhanakan dan menerjemahkan data teknis tersebut menjadi penjelasan yang mudah dipahami oleh pengguna dari segala usia.
+**AI Approach — Context-Aware Intelligence:**
+COSMORA uses *Context-Aware Prompt Engineering* combined with natural language processing (NLP). The AI layer continuously receives the state of the user's 3D viewport (e.g., *"User is currently focused on Saturn's orbit"*) and feeds it to **IBM Bob** as live context. This ensures every AI response is scientifically accurate and perfectly aligned with what the user is actually seeing — not just a generic astronomy lookup.
 
-## ✨ Fitur Utama
+---
 
-- 🪐 **Interactive 3D Solar System**: Rendering WebGL *real-time* untuk *pan, zoom,* dan rotasi objek langit.
-- 🤖 **Contextual AI Assistant**: Ditenagai oleh **IBM Bob**, AI yang mengerti konteks planet apa yang sedang Anda lihat.
-- 🚀 **Mission Logs & Telemetry**: Melacak misi luar angkasa bersejarah dengan data telemetri realistis.
-- 🔭 **Observation Logbook**: Logbook personal untuk mencatat pengamatan bintang Anda yang diamankan dengan Supabase RLS.
-- 🛰️ **NASA API Integration**: Melacak kejadian langit dinamis dan Astronomy Picture of the Day (APOD).
+## 🤖 How IBM Bob (watsonx) Powers COSMORA
+
+**IBM Bob** is the core intelligence engine of COSMORA's Contextual AI Assistant. It is central to the experience, not an add-on.
+
+### 1. 🌍 Contextual Interaction
+When a user navigates to a planet, moon, or deep-space object, the object's coordinates, name, and telemetry data are packaged and sent to IBM Bob as real-time context. Bob processes this information to generate scientifically grounded insights that are specifically relevant to what the user is viewing.
+
+### 2. 🧑‍🚀 Personal Astronomer (Conversational Guide)
+IBM Bob acts as a **"Personal Astronomer"** embedded inside the 3D space. Instead of switching to a search engine or encyclopedia, users can ask questions directly within the simulation — for example:
+> *"Bob, why is Mars red?"*
+> *"Bob, how far is the Andromeda galaxy from Earth?"*
+> *"Bob, what would happen if I stood on Jupiter?"*
+
+Bob responds naturally, accurately, and contextually — like talking to a real astrophysicist.
+
+### 3. 📡 NASA Data Interpretation
+Raw astronomical telemetry from NASA can be complex and difficult to parse for non-experts. IBM Bob is used to translate this technical data into clear, easy-to-understand explanations accessible to users of all ages and backgrounds.
+
+---
+
+## ✨ Key Features
+
+- 🪐 **Interactive 3D Solar System** — Real-time WebGL rendering with full pan, zoom, and rotation of celestial objects.
+- 🤖 **Contextual AI Assistant** — Powered by **IBM Bob (watsonx)**, the AI understands exactly which planet or object you are viewing and responds accordingly.
+- 🚀 **Mission Logs & Telemetry** — Track historic space missions with realistic telemetry data visualizations.
+- 🔭 **Observation Logbook** — A personal logbook to record your stargazing observations, secured with Supabase Row Level Security.
+- 🛰️ **NASA API Integration** — Live tracking of celestial events, satellite data, and the Astronomy Picture of the Day (APOD).
+- 🌌 **Deep Space Explorer** — Venture beyond the Solar System to explore nebulae, star clusters, and distant galaxies.
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Next.js 15, TypeScript, Tailwind CSS
-- **3D Engine**: Three.js, React Three Fiber, React Three Drei
-- **Backend & Auth**: Supabase (PostgreSQL, Row Level Security)
-- **AI Intelligence**: **IBM Bob** (untuk *Contextual NLP* & *Assistant*)
+| Category | Stack |
+|---|---|
+| **Frontend Framework** | Next.js 15 (App Router) |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS, Framer Motion |
+| **3D Engine** | Three.js, React Three Fiber, React Three Drei |
+| **Backend & Database** | Supabase (PostgreSQL, Row Level Security) |
+| **AI Engine** | **IBM watsonx (Bob)** |
+| **Data** | NASA Public APIs |
+| **Deployment** | Vercel |
+
+---
 
 ## 🚀 Getting Started
 
-### 1. Prerequisites
-- Node.js (v18+)
-- Akun [Supabase](https://supabase.com/)
-- API Keys yang dibutuhkan (NASA API, IBM Bob AI, dll)
+### Prerequisites
+- Node.js v18 or higher
+- A [Supabase](https://supabase.com/) account
+- IBM watsonx API credentials
+- NASA API Key (free at [api.nasa.gov](https://api.nasa.gov/))
 
-### 2. Installation
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/sayvixual/cosmora.git
 cd cosmora
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
 ```
 
-### 3. Environment Variables
-Copy file environment:
+### 3. Configure Environment Variables
+
+Copy the example environment file:
+
 ```bash
 cp .env.example .env.local
 ```
-Lengkapi variabel berikut di `.env.local`:
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- IBM Bob / AI API Keys yang relevan
 
-### 4. Run Development Server
+Then fill in the following variables in `.env.local`:
+
+```env
+# Supabase
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+
+# IBM watsonx (Bob) AI
+IBM_WATSONX_API_KEY=your_ibm_watsonx_api_key
+IBM_WATSONX_PROJECT_ID=your_project_id
+
+# NASA API
+NASA_API_KEY=your_nasa_api_key
+```
+
+### 4. Run the Development Server
+
 ```bash
 npm run dev
 ```
-Buka [http://localhost:3000](http://localhost:3000) untuk mulai menjelajah.
+
+Open [http://localhost:3000](http://localhost:3000) to start exploring the universe.
+
+---
+
+## 🖼️ Screenshots
+
+<div align="center">
+
+| Mars | Jupiter | The Moon |
+|:---:|:---:|:---:|
+| <img src="public/images/planet_mars.jpg" width="240" /> | <img src="public/images/thumb_jupiter.jpg" width="240" /> | <img src="public/images/thumb_moon.jpg" width="240" /> |
+
+</div>
+
+---
 
 ## ☁️ Deployment
-Aplikasi ini sangat optimal di-deploy melalui Vercel. Pastikan seluruh *Environment Variables* telah disiapkan di dashboard Vercel sebelum proses *build*.
+
+COSMORA is optimized for deployment on [Vercel](https://vercel.com/). Ensure all environment variables are configured in your Vercel project dashboard before triggering a build.
+
+```bash
+# Production build (optional, for local verification)
+npm run build
+```
+
+---
+
+## 📁 Project Structure
+
+```
+cosmora/
+├── src/
+│   ├── app/              # Next.js App Router pages & API routes
+│   ├── components/       # Reusable UI & 3D components
+│   └── lib/
+│       └── ai/           # IBM Bob AI integration (system prompt, tools)
+├── public/
+│   ├── images/           # Astronomy imagery
+│   └── models/           # 3D GLTF models (planets, etc.)
+└── supabase/             # Database schema & migrations
+```
+
+---
 
 ## 📄 License
+
 MIT License. See `LICENSE` for more information.
+
+---
+
+<div align="center">
+  <strong>Built for the IBM Hackathon 2026</strong><br />
+  <em>Powered by IBM watsonx · Supabase · Next.js · Three.js · NASA APIs</em>
+</div>
