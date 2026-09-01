@@ -42,12 +42,10 @@ export async function POST(req: NextRequest) {
   // Build a human-readable error message, detecting rate-limit specifically
   const getErrorMsg = (err: unknown): string => {
     const msg = String(err);
-    console.error('[AI SDK Error]:', err);
     if (msg.includes('rate_limit') || msg.includes('Rate limit') || msg.includes('429')) {
       return '⚠️ **API rate limit reached.** Too many requests in one minute. Please wait **20–30 seconds** and try again.';
     }
-    // Return actual error message for debugging purposes
-    return `⚠️ Something went wrong: ${msg}`;
+    return `⚠️ Something went wrong. Please try again.`;
   };
 
   const body = await req.json().catch(() => null);
@@ -70,7 +68,7 @@ export async function POST(req: NextRequest) {
           system: systemPrompt,
           messages,
           tools: cosmoraTools,
-          stopWhen: isStepCount(8),
+          stopWhen: isStepCount(5),
         });
 
         for await (const chunk of result.fullStream) {
@@ -107,7 +105,7 @@ export async function POST(req: NextRequest) {
 
 // Health check
 export async function GET() {
-  return new Response(JSON.stringify({ status: 'ok', model: 'deepseek-v4-pro', provider: '9inference.cloud' }), {
+  return new Response(JSON.stringify({ status: 'ok', model: 'openai/gpt-oss-20b' }), {
     headers: { 'Content-Type': 'application/json' },
   });
 }
