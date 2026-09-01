@@ -169,12 +169,49 @@ const getEpicEarthImageryTool = tool({
   },
 });
 
+// ------------------------------------------------------------
+// City coordinate cache — skip geocode API for known cities
+// (saves ~1-2s per request on Vercel's tight timeout)
+// ------------------------------------------------------------
+const CITY_CACHE: Record<string, { name: string; country: string; latitude: number; longitude: number; timezone: string }> = {
+  // Indonesia
+  'bandar lampung': { name: 'Bandar Lampung', country: 'Indonesia', latitude: -5.4292, longitude: 105.2618, timezone: 'Asia/Jakarta' },
+  'lampung': { name: 'Bandar Lampung', country: 'Indonesia', latitude: -5.4292, longitude: 105.2618, timezone: 'Asia/Jakarta' },
+  'jakarta': { name: 'Jakarta', country: 'Indonesia', latitude: -6.2088, longitude: 106.8456, timezone: 'Asia/Jakarta' },
+  'bandung': { name: 'Bandung', country: 'Indonesia', latitude: -6.9175, longitude: 107.6191, timezone: 'Asia/Jakarta' },
+  'surabaya': { name: 'Surabaya', country: 'Indonesia', latitude: -7.2575, longitude: 112.7521, timezone: 'Asia/Jakarta' },
+  'yogyakarta': { name: 'Yogyakarta', country: 'Indonesia', latitude: -7.7956, longitude: 110.3695, timezone: 'Asia/Jakarta' },
+  'medan': { name: 'Medan', country: 'Indonesia', latitude: 3.5952, longitude: 98.6722, timezone: 'Asia/Jakarta' },
+  'makassar': { name: 'Makassar', country: 'Indonesia', latitude: -5.1477, longitude: 119.4327, timezone: 'Asia/Makassar' },
+  'bali': { name: 'Denpasar', country: 'Indonesia', latitude: -8.6705, longitude: 115.2126, timezone: 'Asia/Makassar' },
+  'denpasar': { name: 'Denpasar', country: 'Indonesia', latitude: -8.6705, longitude: 115.2126, timezone: 'Asia/Makassar' },
+  'palembang': { name: 'Palembang', country: 'Indonesia', latitude: -2.9761, longitude: 104.7754, timezone: 'Asia/Jakarta' },
+  'semarang': { name: 'Semarang', country: 'Indonesia', latitude: -6.9932, longitude: 110.4203, timezone: 'Asia/Jakarta' },
+  'malang': { name: 'Malang', country: 'Indonesia', latitude: -7.9797, longitude: 112.6304, timezone: 'Asia/Jakarta' },
+  'bogor': { name: 'Bogor', country: 'Indonesia', latitude: -6.5971, longitude: 106.8060, timezone: 'Asia/Jakarta' },
+  // World
+  'london': { name: 'London', country: 'UK', latitude: 51.5074, longitude: -0.1278, timezone: 'Europe/London' },
+  'new york': { name: 'New York', country: 'USA', latitude: 40.7128, longitude: -74.0060, timezone: 'America/New_York' },
+  'tokyo': { name: 'Tokyo', country: 'Japan', latitude: 35.6762, longitude: 139.6503, timezone: 'Asia/Tokyo' },
+  'singapore': { name: 'Singapore', country: 'Singapore', latitude: 1.3521, longitude: 103.8198, timezone: 'Asia/Singapore' },
+  'sydney': { name: 'Sydney', country: 'Australia', latitude: -33.8688, longitude: 151.2093, timezone: 'Australia/Sydney' },
+  'dubai': { name: 'Dubai', country: 'UAE', latitude: 25.2048, longitude: 55.2708, timezone: 'Asia/Dubai' },
+};
+
+function resolveCity(location: string) {
+  const key = location.toLowerCase().trim();
+  return CITY_CACHE[key] ?? null;
+}
+
 const geocodeLocationTool = tool({
   description: 'Convert a city or location name into geographic coordinates (latitude, longitude). ALWAYS use this first when the user mentions a specific city or location name before calling getWeatherForecast.',
   inputSchema: z.object({
     location: z.string().describe('City or location name e.g. "Jakarta", "London", "New York"'),
   }),
   execute: async (args) => {
+    // Check cache first — saves 1-2s on known cities
+    const cached = resolveCity(args.location);
+    if (cached) return cached;
     try {
       const res = await fetch(
         `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(args.location)}&count=1&language=en&format=json`
@@ -193,6 +230,91 @@ const geocodeLocationTool = tool({
       };
     } catch {
       return { error: 'Failed to geocode location.' };
+    }
+  },
+});
+
+// ------------------------------------------------------------
+// COMBINED OBSERVATION REPORT TOOL
+// Does geocode + weather + moon phase in ONE tool call.
+// Cuts LLM round-trips from 4 → 2 (saves ~4-6s on Vercel).
+// ------------------------------------------------------------
+const getObservationReportTool = tool({
+  description:
+    'PREFERRED TOOL for location-based stargazing queries. Given a city/location name, returns weather conditions AND moon phase in a single call — much faster than calling geocodeLocation, getWeatherForecast, and getObservationConditions separately. Use this whenever a user asks about observing from a specific city.',
+  inputSchema: z.object({
+    location: z.string().describe('City or location name e.g. "Bandar Lampung", "Jakarta", "Tokyo"'),
+  }),
+  execute: async (args) => {
+    try {
+      // Step 1: Resolve coordinates (cache-first, then API)
+      let coords = resolveCity(args.location);
+      if (!coords) {
+        const geoRes = await fetch(
+          `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(args.location)}&count=1&language=en&format=json`
+        );
+        const geoData = await geoRes.json();
+        if (!geoData.results || geoData.results.length === 0) {
+          return { error: `Could not find "${args.location}". Try a more specific city name.` };
+        }
+        const r = geoData.results[0];
+        coords = { name: r.name, country: r.country, latitude: r.latitude, longitude: r.longitude, timezone: r.timezone };
+      }
+
+      // Step 2: Fetch weather + moon phase IN PARALLEL
+      const [weatherRes, moonData] = await Promise.all([
+        fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&current=temperature_2m,cloud_cover,weather_code,visibility&timezone=auto`
+        ).then((r) => r.json()),
+        (async () => {
+          const date = new Date();
+          const phase = MoonPhase(date);
+          const illum = Illumination(Body.Moon, date);
+          let phaseName = '';
+          if (phase < 22.5 || phase > 337.5) phaseName = 'New Moon';
+          else if (phase < 67.5) phaseName = 'Waxing Crescent';
+          else if (phase < 112.5) phaseName = 'First Quarter';
+          else if (phase < 157.5) phaseName = 'Waxing Gibbous';
+          else if (phase < 202.5) phaseName = 'Full Moon';
+          else if (phase < 247.5) phaseName = 'Waning Gibbous';
+          else if (phase < 292.5) phaseName = 'Last Quarter';
+          else phaseName = 'Waning Crescent';
+          return {
+            moon_phase: phaseName,
+            illumination_percent: Math.round(illum.phase_fraction * 100),
+          };
+        })(),
+      ]);
+
+      const cloud = weatherRes.current.cloud_cover as number;
+      const illumPct = moonData.illumination_percent;
+
+      return {
+        // Location
+        location_name: coords.name,
+        country: coords.country,
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+        // Weather
+        temperature_celsius: weatherRes.current.temperature_2m as number,
+        cloud_cover_percent: cloud,
+        visibility_meters: weatherRes.current.visibility as number,
+        observation_quality: cloud < 10 ? 'Excellent' : cloud < 30 ? 'Good' : cloud < 60 ? 'Fair' : 'Poor',
+        is_clear: cloud < 30,
+        // Moon
+        moon_phase: moonData.moon_phase,
+        moon_illumination_percent: illumPct,
+        dark_sky_quality: illumPct < 20 ? 'Excellent (Dark Sky)' : illumPct < 50 ? 'Moderate' : 'Poor (Moonlight Interference)',
+        // Combined verdict
+        overall_verdict:
+          cloud < 30 && illumPct < 50
+            ? '✅ Great night for stargazing!'
+            : cloud >= 60
+            ? '❌ Too cloudy — observation not recommended'
+            : '⚠️ Possible — manage moonlight and cloud cover',
+      };
+    } catch (err) {
+      return { error: `Observation report failed: ${String(err)}` };
     }
   },
 });
@@ -324,6 +446,9 @@ const searchExoplanetsTool = tool({
 // Export all tools — AI SDK v7 ToolSet format
 // ============================================================
 export const cosmoraTools = {
+  // ⚡ FAST PATH — use this for ALL location-based observation queries
+  getObservationReport: getObservationReportTool,
+  // Standard tools
   searchObjects: searchObjectsTool,
   getObjectDetails: getObjectDetailsTool,
   getUpcomingEvents: getUpcomingEventsTool,
@@ -332,6 +457,7 @@ export const cosmoraTools = {
   searchNasaImages: searchNasaImagesTool,
   getMarsRoverPhotos: getMarsRoverPhotosTool,
   getEpicEarthImagery: getEpicEarthImageryTool,
+  // Kept for backward compat / non-observation queries
   geocodeLocation: geocodeLocationTool,
   getWeatherForecast: getWeatherForecastTool,
   getObservationConditions: getObservationConditionsTool,
