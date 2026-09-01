@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@900&amp;display=swap');
+      .logo-text {
+        font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+        font-weight: 900;
+        font-size: 24px;
+        letter-spacing: 0.22em;
+        fill: #ffffff;
+      }
+    </style>
+  </defs>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="logo-text">COSMORA</text>
+</svg>
