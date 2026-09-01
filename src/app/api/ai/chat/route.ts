@@ -42,10 +42,12 @@ export async function POST(req: NextRequest) {
   // Build a human-readable error message, detecting rate-limit specifically
   const getErrorMsg = (err: unknown): string => {
     const msg = String(err);
+    console.error('[AI SDK Error]:', err);
     if (msg.includes('rate_limit') || msg.includes('Rate limit') || msg.includes('429')) {
       return '⚠️ **API rate limit reached.** Too many requests in one minute. Please wait **20–30 seconds** and try again.';
     }
-    return `⚠️ Something went wrong. Please try again.`;
+    // Return actual error message for debugging purposes
+    return `⚠️ Something went wrong: ${msg}`;
   };
 
   const body = await req.json().catch(() => null);
