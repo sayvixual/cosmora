@@ -5,14 +5,14 @@
   <br /><br />
   <strong>AI-Powered Space Exploration & Astronomy Education Platform</strong>
   <br />
-  <em>Explore the universe. Ask questions. Get answers — powered by IBM watsonx.</em>
+  <em>Explore the universe. Ask questions. Get answers — powered by Groq.</em>
   <br /><br />
   <img src="public/images/earth_mauna_kea.jpg" alt="Cosmora — Earth from Mauna Kea" width="800" />
 </div>
 
 <br />
 
-COSMORA is an interactive, web-based 3D space exploration platform that brings the universe directly to your browser. By combining real astronomical data, immersive 3D graphics, and **IBM watsonx AI (Bob)**, COSMORA allows users to seamlessly explore the Solar System, dive into Deep Space, and learn about celestial events — in a way that feels truly alive.
+COSMORA is an interactive, web-based 3D space exploration platform that brings the universe directly to your browser. By combining real astronomical data, immersive 3D graphics, and **Groq AI (Bob)**, COSMORA allows users to seamlessly explore the Solar System, dive into Deep Space, and learn about celestial events — in a way that feels truly alive.
 
 ---
 
@@ -38,23 +38,23 @@ COSMORA transforms astronomy education into a **living experience**. Users can "
 | **Frontend** | Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion |
 | **3D Engine** | Three.js, React Three Fiber, React Three Drei |
 | **Backend & Auth** | Supabase (PostgreSQL + Row Level Security) |
-| **AI Intelligence** | **IBM watsonx (Bob)** — Context-Aware NLP & Conversational Guide |
+| **AI Intelligence** | **Groq (Bob)** — Context-Aware NLP & Conversational Guide |
 | **Data Sources** | NASA Public APIs (APOD, telemetry, celestial events) |
 
 **AI Approach — Context-Aware Intelligence:**
-COSMORA uses *Context-Aware Prompt Engineering* combined with natural language processing (NLP). The AI layer continuously receives the state of the user's 3D viewport (e.g., *"User is currently focused on Saturn's orbit"*) and feeds it to **IBM Bob** as live context. This ensures every AI response is scientifically accurate and perfectly aligned with what the user is actually seeing — not just a generic astronomy lookup.
+COSMORA uses *Context-Aware Prompt Engineering* combined with natural language processing (NLP). The AI layer continuously receives the state of the user's 3D viewport (e.g., *"User is currently focused on Saturn's orbit"*) and feeds it to **Bob** as live context. This ensures every AI response is scientifically accurate and perfectly aligned with what the user is actually seeing — not just a generic astronomy lookup.
 
 ---
 
-## 🤖 How IBM Bob (watsonx) Powers COSMORA
+## 🤖 How Bob (Groq) Powers COSMORA
 
-**IBM Bob** is the core intelligence engine of COSMORA's Contextual AI Assistant. It is central to the experience, not an add-on.
+**Bob** is the core intelligence engine of COSMORA's Contextual AI Assistant. It is central to the experience, not an add-on.
 
 ### 1. 🌍 Contextual Interaction
-When a user navigates to a planet, moon, or deep-space object, the object's coordinates, name, and telemetry data are packaged and sent to IBM Bob as real-time context. Bob processes this information to generate scientifically grounded insights that are specifically relevant to what the user is viewing.
+When a user navigates to a planet, moon, or deep-space object, the object's coordinates, name, and telemetry data are packaged and sent to Bob as real-time context. Bob processes this information to generate scientifically grounded insights that are specifically relevant to what the user is viewing.
 
 ### 2. 🧑‍🚀 Personal Astronomer (Conversational Guide)
-IBM Bob acts as a **"Personal Astronomer"** embedded inside the 3D space. Instead of switching to a search engine or encyclopedia, users can ask questions directly within the simulation — for example:
+Bob acts as a **"Personal Astronomer"** embedded inside the 3D space. Instead of switching to a search engine or encyclopedia, users can ask questions directly within the simulation — for example:
 > *"Bob, why is Mars red?"*
 > *"Bob, how far is the Andromeda galaxy from Earth?"*
 > *"Bob, what would happen if I stood on Jupiter?"*
@@ -62,14 +62,14 @@ IBM Bob acts as a **"Personal Astronomer"** embedded inside the 3D space. Instea
 Bob responds naturally, accurately, and contextually — like talking to a real astrophysicist.
 
 ### 3. 📡 NASA Data Interpretation
-Raw astronomical telemetry from NASA can be complex and difficult to parse for non-experts. IBM Bob is used to translate this technical data into clear, easy-to-understand explanations accessible to users of all ages and backgrounds.
+Raw astronomical telemetry from NASA can be complex and difficult to parse for non-experts. Bob is used to translate this technical data into clear, easy-to-understand explanations accessible to users of all ages and backgrounds.
 
 ---
 
 ## ✨ Key Features
 
 - 🪐 **Interactive 3D Solar System** — Real-time WebGL rendering with full pan, zoom, and rotation of celestial objects.
-- 🤖 **Contextual AI Assistant** — Powered by **IBM Bob (watsonx)**, the AI understands exactly which planet or object you are viewing and responds accordingly.
+- 🤖 **Contextual AI Assistant** — Powered by **Bob (Groq)**, the AI understands exactly which planet or object you are viewing and responds accordingly.
 - 🚀 **Mission Logs & Telemetry** — Track historic space missions with realistic telemetry data visualizations.
 - 🔭 **Observation Logbook** — A personal logbook to record your stargazing observations, secured with Supabase Row Level Security.
 - 🛰️ **NASA API Integration** — Live tracking of celestial events, satellite data, and the Astronomy Picture of the Day (APOD).
@@ -86,7 +86,7 @@ Raw astronomical telemetry from NASA can be complex and difficult to parse for n
 | **Styling** | Tailwind CSS, Framer Motion |
 | **3D Engine** | Three.js, React Three Fiber, React Three Drei |
 | **Backend & Database** | Supabase (PostgreSQL, Row Level Security) |
-| **AI Engine** | **IBM watsonx (Bob)** |
+| **AI Engine** | **Groq (Bob)** |
 | **Data** | NASA Public APIs |
 | **Deployment** | Vercel |
 
@@ -97,7 +97,7 @@ Raw astronomical telemetry from NASA can be complex and difficult to parse for n
 ### Prerequisites
 - Node.js v18 or higher
 - A [Supabase](https://supabase.com/) account
-- IBM watsonx API credentials
+- Groq API credentials
 - NASA API Key (free at [api.nasa.gov](https://api.nasa.gov/))
 
 ### 1. Clone the Repository
@@ -128,9 +128,8 @@ Then fill in the following variables in `.env.local`:
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-# IBM watsonx (Bob) AI
-IBM_WATSONX_API_KEY=your_ibm_watsonx_api_key
-IBM_WATSONX_PROJECT_ID=your_project_id
+# Groq (Bob) AI
+GROQ_API_KEY=your_groq_api_key
 
 # NASA API
 NASA_API_KEY=your_nasa_api_key
@@ -177,7 +176,7 @@ cosmora/
 │   ├── app/              # Next.js App Router pages & API routes
 │   ├── components/       # Reusable UI & 3D components
 │   └── lib/
-│       └── ai/           # IBM Bob AI integration (system prompt, tools)
+│       └── ai/           # Groq AI integration (system prompt, tools)
 ├── public/
 │   ├── images/           # Astronomy imagery
 │   └── models/           # 3D GLTF models (planets, etc.)
@@ -194,5 +193,5 @@ MIT License. See `LICENSE` for more information.
 
 <div align="center">
   <strong>Built for the IBM Hackathon 2026</strong><br />
-  <em>Powered by IBM watsonx · Supabase · Next.js · Three.js · NASA APIs</em>
+  <em>Powered by Groq · Supabase · Next.js · Three.js · NASA APIs</em>
 </div>
